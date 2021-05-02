@@ -6,12 +6,13 @@ interface Props {
   value: string
 }
 
+const { TextArea } = Input
+
 export default ({ placeholder, onChange, value }: Props) => (
-  <Input
+  <TextArea
     placeholder={placeholder}
     onChange={onChange}
     value={value}
+    rows={4}
   />
 )
-
-
