@@ -16,7 +16,7 @@ export const useGetPosts = () => {
   const getPosts = async () => {
     setLoading(true)
 
-    const data = await service.getAll('posts')
+    const data = await service.getAll('users/1/posts')
 
     dispatch(getAllPostSuccess(data.data))
 
