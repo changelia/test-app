@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useMemo } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { useFetchComments } from 'hooks/useFetchComments'
@@ -9,7 +9,19 @@ import styled from 'styled-components'
 
 const { TextArea } = Input
 
-const Editor = ({ onChange, onSubmit, submitting, value }: any) => (
+interface EditorTypes {
+  value: string
+  submitting: boolean
+  onSubmit: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void
+  onChange: any
+}
+
+interface CommentListProps {
+  name: string
+  body: string
+}
+
+const Editor = ({ onChange, onSubmit, submitting, value }: EditorTypes) => (
   <>
     <Form.Item>
       <TextArea rows={4} onChange={onChange} value={value} />
@@ -26,7 +38,7 @@ const CustomComments = () => {
   const params: any = useParams()
   const [commentValue, setCommentValue] = useState('')
   const { fetchComments, loading } = useFetchComments()
-  const { addComment } = useAddComment()
+  const { addComment, loading: addPostLoading } = useAddComment()
   const comments = useSelector((state: any) => state.comments)
 
   const commentList = comments.commentList[params.id]
@@ -37,7 +49,17 @@ const CustomComments = () => {
   }, [params.id])
 
   const handleCreateComment = () => {
-    addComment({}, params.id, () => { })
+    if (!commentValue) return
+    addComment({
+      postId: params.id,
+      email: 'email@meial.sw',
+      name: 'comment',
+      body: commentValue
+    },
+      params.id,
+      () => {
+        setCommentValue('')
+      })
   }
 
   const handleChange = useCallback((e: React.FormEvent<HTMLInputElement>) => {
@@ -52,9 +74,9 @@ const CustomComments = () => {
       <StyledContainer>
         <List
           dataSource={commentList && commentList}
-          header={0}
+          header={commentList && commentList.length || 0}
           itemLayout="horizontal"
-          renderItem={props => <CommentList comment={props} />}
+          renderItem={(props: CommentListProps) => <CommentList comment={props} />}
         />
       </StyledContainer>
       <Comment
@@ -68,7 +90,7 @@ const CustomComments = () => {
           <Editor
             onChange={handleChange}
             onSubmit={handleCreateComment}
-            submitting={false}
+            submitting={addPostLoading}
             value={commentValue}
           />
         }
