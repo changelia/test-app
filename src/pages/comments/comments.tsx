@@ -19,6 +19,9 @@ interface EditorTypes {
 interface CommentListProps {
   name: string
   body: string
+  tags: string[]
+  postId: string
+  id: string
 }
 
 const Editor = ({ onChange, onSubmit, submitting, value }: EditorTypes) => (
@@ -42,6 +45,8 @@ const CustomComments = () => {
   const comments = useSelector((state: any) => state.comments)
 
   const commentList = comments.commentList[params.id]
+
+  // console.log('commentList::', commentList)
 
   useEffect(() => {
     if (!commentList)

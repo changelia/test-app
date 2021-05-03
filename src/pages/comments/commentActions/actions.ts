@@ -22,3 +22,20 @@ export function addCommentSuccess(data: CommentInterface, postId: string) {
     postId
   }
 }
+
+export function addNewTag(tag: string[]) {
+  return {
+    type: actionTypes.ADD_NEW_TAG,
+    tag
+  }
+}
+
+export function addTagToComment(tags: string[], postId: string, commentId: string) {
+  return {
+    type: actionTypes.ADD_TAG_TO_COMMENT,
+    tags,
+    postId,
+    commentId
+  }
+}
+

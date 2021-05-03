@@ -40,7 +40,6 @@ export const commentReducer = (state = initialState, action: any) => {
           [action.postId]: [comment, ...list[action.postId].filter((i: any) => i.id !== action.commentId)]
         },
       }
-    // return { ...state }
 
     default:
       return state
