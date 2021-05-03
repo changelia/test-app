@@ -10,6 +10,8 @@ interface commentInterface {
   email: string
 }
 
+// you can add only 1 unique comment to a specific post = free plan https://jsonplaceholder.typicode.com/ 
+
 export const useAddComment = () => {
   const [loading, setLoading] = useState(false)
   const dispatch = useDispatch()

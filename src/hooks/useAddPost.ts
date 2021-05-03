@@ -10,6 +10,7 @@ interface Data {
   email?: string
 }
 
+// you can add only 1 unique post to a specific user = free plan https://jsonplaceholder.typicode.com/ 
 
 export const useAddPost = () => {
   const [loading, setLoading] = useState(false)
