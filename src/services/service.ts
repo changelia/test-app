@@ -2,7 +2,7 @@
 import http from './http'
 
 const getAll = (url: string) => {
-  return http.get(`users/1/${url}`)
+  return http.get(`/${url}`)
 };
 
 const get = (url: string) => {
@@ -10,7 +10,7 @@ const get = (url: string) => {
 };
 
 const create = (url: string, data: any) => {
-  return http.post(`/${url}`, data)
+  return http.post(`/${url}`, JSON.stringify(data))
 };
 
 export default {
