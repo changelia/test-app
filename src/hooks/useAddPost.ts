@@ -1,19 +1,21 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import { createPostSuccess } from 'pages/posts/postActins/actions'
 import service from 'services/service'
 
-interface PostInterface {
+interface Data {
+  title?: string
   body: string
-  title: string
-  userId: string
+  postId: string
+  email?: string
 }
+
 
 export const useAddPost = () => {
   const [loading, setLoading] = useState(false)
   const dispatch = useDispatch()
 
-  const addPost = async (formData: PostInterface, callBack: any) => {
+  const addPost = useCallback(async (formData: Data, callBack: any) => {
     setLoading(true)
 
     const data = await service.create('posts', formData)
@@ -22,7 +24,7 @@ export const useAddPost = () => {
 
     setLoading(false)
     callBack()
-  }
+  }, [])
 
   return {
     addPost,
