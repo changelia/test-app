@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Modal from 'components/modal'
 import { useFormik } from 'formik'
 import { Input, Textarea } from 'components/input'
@@ -9,7 +9,12 @@ const formData = {
   body: ''
 }
 
-const AddPostModal = ({ open, setOpens }: any) => {
+interface AddPostModalProps {
+  open: boolean
+  setOpens: any
+}
+
+const AddPostModal = ({ open, setOpens }: AddPostModalProps) => {
   const { addPost, loading } = useAddPost()
 
   const {
@@ -23,6 +28,7 @@ const AddPostModal = ({ open, setOpens }: any) => {
   } = useFormik({
     initialValues: formData,
     onSubmit: (values: any) => {
+      values.userId = 1
       addPost(values, () => {
         setOpens(false)
         resetForm()
@@ -49,7 +55,7 @@ const AddPostModal = ({ open, setOpens }: any) => {
           onChange={handleChange}
           value={values.body}
           name="body"
-          placeholder="Post Title"
+          placeholder="Post Body"
         />
       </>
     </Modal>
