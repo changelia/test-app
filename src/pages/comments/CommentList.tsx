@@ -1,7 +1,14 @@
 import React from 'react'
 import { Comment } from 'antd'
 
-const CommentList = ({ comment }: any) => (
+interface CommentListProps {
+  comment: {
+    name: string
+    body: string
+  }
+}
+
+const CommentList = ({ comment }: CommentListProps) => (
   <Comment
     actions={[]}
     author={<a>{comment.name}</a>}
