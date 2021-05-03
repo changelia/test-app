@@ -1,11 +1,40 @@
 import React from 'react';
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Switch } from 'react-router-dom'
+// import createSagaMiddleware from 'redux-saga'
+
+import 'antd/dist/antd.css'
+
+import reducers from './redux/rootReducer'
+// import rootSaga from 'redux/rootSaga'
+
+// const sagaMiddleware = createSagaMiddleware()
+
+const middlewares: any = []
+
+const enhancers = [
+  applyMiddleware(...middlewares),
+]
+
+const store = createStore(
+  reducers,
+  compose(...enhancers),
+)
+// sagaMiddleware.run(rootSaga)
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <BrowserRouter>
+        <Switch>
+          <App />
+        </Switch>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
