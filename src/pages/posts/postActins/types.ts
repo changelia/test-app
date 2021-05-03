@@ -1,0 +1,2 @@
+export const CREATE_POST_SUCCESS = 'posts/CREATE_POST_SUCCESS'
+export const GET_ALL_POST_SUCCESS = 'posts/GET_ALL_POST_SUCCESS'
