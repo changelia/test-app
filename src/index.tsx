@@ -1,11 +1,34 @@
 import React from 'react';
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Switch } from 'react-router-dom'
+import 'antd/dist/antd.css'
+
+import reducers from './redux/rootReducer'
+
+const middlewares: any = []
+
+const enhancers = [
+  applyMiddleware(...middlewares),
+]
+
+const store = createStore(
+  reducers,
+  compose(...enhancers),
+)
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <BrowserRouter>
+        <Switch>
+          <App />
+        </Switch>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

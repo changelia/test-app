@@ -15,6 +15,7 @@ export default ({ isModalVisible, handleOk, handleCancel, children, title }: Pro
     visible={isModalVisible}
     onOk={handleOk}
     onCancel={handleCancel}
+    okText={'Create'}
   >
     {children}
   </Modal>

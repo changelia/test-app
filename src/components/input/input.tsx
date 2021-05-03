@@ -4,7 +4,7 @@ interface Props {
   placeholder: string
   onChange: (e?: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => void
   value: string
-  name: string
+  name?: string
 }
 
 export default ({ placeholder, onChange, value, name }: Props) => (
