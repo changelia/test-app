@@ -16,7 +16,7 @@ export const useAddPost = () => {
   const addPost = async (formData: PostInterface, callBack: any) => {
     setLoading(true)
 
-    const data = await service.create('post', JSON.stringify(formData))
+    const data = await service.create('posts', formData)
 
     dispatch(createPostSuccess(data.data))
 
