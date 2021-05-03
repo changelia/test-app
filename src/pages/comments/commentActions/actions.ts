@@ -15,9 +15,10 @@ export function getCommentsByPost(data: CommentInterface[], postId: string) {
   }
 }
 
-export function addCommentSuccess(data: CommentInterface) {
+export function addCommentSuccess(data: CommentInterface, postId: string) {
   return {
     type: actionTypes.ADD_COMMENT_SUCCESS,
     data,
+    postId
   }
 }
